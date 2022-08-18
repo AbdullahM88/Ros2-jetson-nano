@@ -1,0 +1,25 @@
+#ROS is the natural choice when building a multi-sensory autonomous robot.
+After setting up the Jetson Nano with its JetPack image using our Getting Started guide, we are going to install
+the latest version of ROS that runs on Ubuntu 18 Bionic Beaver: Melodic Morenig
+
+go to the terminal window 
+Set up the Jetson Nano to accept software from packages.ros.org >> $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+Add a new apt key >> $ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654'
+
+Update the Debian packages index >> $ sudo apt update
+Install the ROS Desktop package, including support for rqt, rvizand other useful robotics packages >> $ sudo apt install ros-melodic-desktop
+Update your .bashrc script: $ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc $ source ~/.bashrc
+Install and initialize rosde >> $ sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+$ sudo rosdep init 
+$ rosdep update
+
+#Configure a catkin workspace
+Install the following dependencies >> $ sudo apt-get install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev python-rosinstall python-rosinstall-generator python-wstool build-essential git
+Create the catkin root and source folders >> $ mkdir -p ~/catkin_ws/src $ cd ~/catkin_ws/
+Configure the catkin workspace by issuing a first “empty” build command >> $ catkin_make
+Finally, update your .bashrc script with the information about the new workspace >> $ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc $ source ~/.bashrc
+
+#your catkin workspace is now ready to compile your ROS packages from source directly onto the Jetson Nano.
+
+#Reference >> https://www.stereolabs.com/blog/ros-and-nvidia-jetson-nano/
+
